@@ -1,0 +1,211 @@
+# CongraphDB Sample Project
+
+> A comprehensive, easy-to-understand demo project that showcases all key features of CongraphDB
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20+-green)](https://nodejs.org/)
+
+## What is CongraphDB?
+
+CongraphDB is an embedded graph database that brings the power of graph data modeling to your applications without the overhead of a separate database server. It's perfect for:
+
+- **Applications with complex relationships** - Social networks, recommendation engines, fraud detection
+- **Local-first applications** - Desktop apps, CLI tools, embedded systems
+- **Development and testing** - Fast, in-memory graph database for unit tests
+- **AI/ML applications** - Native vector similarity search with HNSW indexing
+
+## Features Demonstrated
+
+This sample project showcases:
+
+- **Core Graph Operations** - Creating nodes, relationships, and querying with Cypher
+- **Transactions** - ACID guarantees with begin, commit, and rollback
+- **Vector Similarity Search** - HNSW-based approximate nearest neighbor search
+- **Advanced Queries** - Variable-length paths, aggregation, pattern comprehension
+- **Configuration Options** - In-memory vs file-based, compression, WAL tuning
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 20 or higher
+- npm or yarn
+- TypeScript 5.3+
+
+### Installation
+
+1. Clone this repository and navigate to the congraphdb-sample directory
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Build the project:
+
+```bash
+npm run build
+```
+
+### Running Examples
+
+Run all examples:
+
+```bash
+npm start
+```
+
+Run a specific example:
+
+```bash
+npm start basics              # Basic CRUD operations
+npm start social-network      # Social network graph demo
+npm start transactions        # Transaction demo
+npm start vector-search       # AI/Embedding similarity search
+npm start configuration       # DB configuration options
+npm start advanced-queries    # Complex Cypher patterns
+```
+
+### Options
+
+```bash
+npm start -- --verbose        # Show query details
+npm start -- --list          # List all examples
+npm start -- --help          # Show help
+```
+
+## Project Structure
+
+```
+congraphdb-sample/
+├── src/
+│   ├── examples/              # Example scripts
+│   │   ├── 01-basics.ts
+│   │   ├── 02-social-network.ts
+│   │   ├── 03-transactions.ts
+│   │   ├── 04-vector-search.ts
+│   │   ├── 05-configuration.ts
+│   │   └── 06-advanced-queries.ts
+│   ├── utils/                 # Helper utilities
+│   │   ├── logger.ts          # Colored console output
+│   │   ├── timer.ts           # Performance timing
+│   │   └── helpers.ts         # DB helpers
+│   └── index.ts               # CLI entry point
+├── data/
+│   └── seed/                  # Sample data
+│       ├── users.json
+│       └── embeddings.json
+├── docs/                      # Documentation
+│   ├── tutorial.md
+│   ├── api-cheatsheet.md
+│   └── use-cases.md
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+## Example Descriptions
+
+### 01 - Basics
+
+Learn the fundamentals:
+- Creating/opening a database
+- Defining node and relationship tables
+- CREATE, MATCH, UPDATE, DELETE operations
+
+**Time:** 5 minutes
+
+### 02 - Social Network
+
+Real-world graph modeling:
+- Multiple node types (User, Post, Comment)
+- Multiple relationship types (FOLLOWS, POSTED, LIKED)
+- 2-hop and 3-hop queries
+- Content recommendations
+
+**Time:** 10 minutes
+
+### 03 - Transactions
+
+ACID transaction guarantees:
+- Multi-operation transactions
+- Commit and rollback
+- Error handling
+- Banking system use case
+
+**Time:** 8 minutes
+
+### 04 - Vector Search
+
+AI/ML integration:
+- FLOAT_VECTOR columns
+- Similarity search with <-> operator
+- Semantic document search
+- Recommendations by similarity
+
+**Time:** 10 minutes
+
+### 05 - Configuration
+
+Database optimization:
+- In-memory vs file-based
+- Buffer size tuning
+- Compression options
+- WAL and checkpointing
+
+**Time:** 8 minutes
+
+### 06 - Advanced Queries
+
+Complex Cypher patterns:
+- OPTIONAL MATCH
+- Variable-length paths
+- Aggregation functions
+- Pattern comprehensions
+- CASE expressions
+
+**Time:** 12 minutes
+
+## Documentation
+
+- **[Tutorial](docs/tutorial.md)** - Step-by-step guide from zero to working app
+- **[API Cheatsheet](docs/api-cheatsheet.md)** - Quick reference for CongraphDB API
+- **[Use Cases](docs/use-cases.md)** - Real-world application scenarios
+
+## Development
+
+### Building
+
+```bash
+npm run build
+```
+
+### Cleaning
+
+Remove build artifacts and database files:
+
+```bash
+npm run clean
+```
+
+### Adding New Examples
+
+1. Create a new file in `src/examples/`
+2. Export a `run(verbose?: boolean): Promise<void>` function
+3. Import and register in `src/index.ts`
+4. Add documentation
+
+## Contributing
+
+Contributions are welcome! This is a community-focused project to help developers learn CongraphDB.
+
+## License
+
+MIT
+
+## Links
+
+- [CongraphDB Repository](https://github.com/your-repo/congraphdb)
+- [Cypher Query Language](https://opencypher.org/)
+- [Documentation](docs/)
