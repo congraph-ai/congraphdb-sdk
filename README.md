@@ -4,6 +4,7 @@
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-green)](https://nodejs.org/)
+[![CongraphDB](https://img.shields.io/badge/CongraphDB-0.1.2-orange)](https://www.npmjs.com/package/@congraph-ai/congraphdb)
 
 ## What is CongraphDB?
 
@@ -42,15 +43,23 @@ This sample project showcases:
 npm install
 ```
 
-3. Build the project:
+3. Build and run the project:
 
 ```bash
-npm run build
+npm run dev
 ```
+
+This will build the TypeScript code and run all examples.
 
 ### Running Examples
 
-Run all examples:
+Run all examples (builds first):
+
+```bash
+npm run dev
+```
+
+Run all examples (requires pre-built dist/):
 
 ```bash
 npm start
@@ -71,8 +80,9 @@ npm start advanced-queries    # Complex Cypher patterns
 
 ```bash
 npm start -- --verbose        # Show query details
-npm start -- --list          # List all examples
-npm start -- --help          # Show help
+npm start -- --list           # List all examples
+npm start -- --interactive    # Interactive mode
+npm start -- --help           # Show help
 ```
 
 ## Project Structure
@@ -92,10 +102,7 @@ congraphdb-sample/
 │   │   ├── timer.ts           # Performance timing
 │   │   └── helpers.ts         # DB helpers
 │   └── index.ts               # CLI entry point
-├── data/
-│   └── seed/                  # Sample data
-│       ├── users.json
-│       └── embeddings.json
+├── data/                      # Database files created during examples
 ├── docs/                      # Documentation
 │   ├── tutorial.md
 │   ├── api-cheatsheet.md
@@ -206,6 +213,7 @@ MIT
 
 ## Links
 
-- [CongraphDB Repository](https://github.com/your-repo/congraphdb)
+- [CongraphDB on npm](https://www.npmjs.com/package/@congraph-ai/congraphdb)
+- [CongraphDB Repository](https://github.com/congraph-ai/congraphdb)
 - [Cypher Query Language](https://opencypher.org/)
 - [Documentation](docs/)
