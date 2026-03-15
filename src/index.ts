@@ -28,6 +28,9 @@ import { run as runTransactions } from './examples/03-transactions.js';
 import { run as runVectorSearch } from './examples/04-vector-search.js';
 import { run as runConfiguration } from './examples/05-configuration.js';
 import { run as runAdvancedQueries } from './examples/06-advanced-queries.js';
+import { run as runPathFinding } from './examples/07-path-finding.js';
+import { run as runTemporalTypes } from './examples/08-temporal-types.js';
+import { run as runAdvancedFeatures } from './examples/09-advanced-features.js';
 
 // Example metadata
 const EXAMPLES = [
@@ -66,6 +69,24 @@ const EXAMPLES = [
     description: 'Complex Cypher patterns',
     module: runAdvancedQueries,
     order: 6,
+  },
+  {
+    name: 'path-finding',
+    description: 'Path finding algorithms',
+    module: runPathFinding,
+    order: 7,
+  },
+  {
+    name: 'temporal-types',
+    description: 'Temporal data types',
+    module: runTemporalTypes,
+    order: 8,
+  },
+  {
+    name: 'advanced-features',
+    description: 'Multi-label, regex, maps',
+    module: runAdvancedFeatures,
+    order: 9,
   },
 ];
 

@@ -4,7 +4,7 @@
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-green)](https://nodejs.org/)
-[![CongraphDB](https://img.shields.io/badge/CongraphDB-0.1.2-orange)](https://www.npmjs.com/package/@congraph-ai/congraphdb)
+[![CongraphDB](https://img.shields.io/badge/CongraphDB-0.1.4-orange)](https://www.npmjs.com/package/@congraph-ai/congraphdb)
 
 ## What is CongraphDB?
 
@@ -24,6 +24,9 @@ This sample project showcases:
 - **Vector Similarity Search** - HNSW-based approximate nearest neighbor search
 - **Advanced Queries** - Variable-length paths, aggregation, pattern comprehension
 - **Configuration Options** - In-memory vs file-based, compression, WAL tuning
+- **Path Finding** - shortestPath() and allShortestPaths() for graph traversal
+- **Temporal Types** - DATE, DATETIME, DURATION for time-based queries
+- **Advanced Features** - Multi-label nodes, regex matching, map literals
 
 ## Quick Start
 
@@ -74,6 +77,9 @@ npm start transactions        # Transaction demo
 npm start vector-search       # AI/Embedding similarity search
 npm start configuration       # DB configuration options
 npm start advanced-queries    # Complex Cypher patterns
+npm start path-finding        # Path finding algorithms
+npm start temporal-types      # Temporal data types
+npm start advanced-features   # Multi-label, regex, maps
 ```
 
 ### Options
@@ -96,7 +102,10 @@ congraphdb-sample/
 │   │   ├── 03-transactions.ts
 │   │   ├── 04-vector-search.ts
 │   │   ├── 05-configuration.ts
-│   │   └── 06-advanced-queries.ts
+│   │   ├── 06-advanced-queries.ts
+│   │   ├── 07-path-finding.ts
+│   │   ├── 08-temporal-types.ts
+│   │   └── 09-advanced-features.ts
 │   ├── utils/                 # Helper utilities
 │   │   ├── logger.ts          # Colored console output
 │   │   ├── timer.ts           # Performance timing
@@ -171,6 +180,39 @@ Complex Cypher patterns:
 - Aggregation functions
 - Pattern comprehensions
 - CASE expressions
+
+**Time:** 12 minutes
+
+### 07 - Path Finding
+
+Graph traversal and path finding:
+- shortestPath() - Find shortest path between nodes
+- allShortestPaths() - Find all shortest paths
+- Variable-length path patterns [*1..n]
+- Relationship direction control
+- Use cases: Route optimization, social network analysis
+
+**Time:** 10 minutes
+
+### 08 - Temporal Types
+
+Working with dates and times:
+- DATE, DATETIME, DURATION types
+- date(), datetime(), timestamp() functions
+- Date arithmetic and comparisons
+- ISO 8601 duration parsing
+- Time-based analytics
+
+**Time:** 10 minutes
+
+### 09 - Advanced Features
+
+Advanced Cypher language features:
+- Multi-label nodes for rich classification
+- Regex pattern matching with =~
+- Map literals for dynamic data structures
+- Role-based access control patterns
+- Email validation and filtering
 
 **Time:** 12 minutes
 
