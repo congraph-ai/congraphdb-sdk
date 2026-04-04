@@ -1,9 +1,9 @@
 ---
-id: embedded
+id: levelgraph_mngocnv3
 title: "LevelGraph"
 tags: [graph, leveldb, javascript]
-createdAt: 2026-03-29T01:23:04.749Z
-updatedAt: 2026-03-29T01:23:04.758Z
+createdAt: 2026-04-01T23:26:04.239Z
+updatedAt: 2026-04-01T23:26:04.245Z
 version: 2
 ---
 

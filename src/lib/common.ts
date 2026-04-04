@@ -6,6 +6,42 @@
 import type { NoteResponse } from './types.js';
 
 /**
+ * PropertyTypes constant for type-safe schema definitions
+ * Used in schema API for defining table column types
+ */
+export const PropertyTypes = {
+  STRING: 'STRING',
+  INT32: 'INT32',
+  INT64: 'INT64',
+  FLOAT: 'FLOAT',
+  DOUBLE: 'DOUBLE',
+  BOOL: 'BOOL',
+  STRING_ARRAY: 'STRING[]',
+  INT32_ARRAY: 'INT32[]',
+  INT64_ARRAY: 'INT64[]',
+  FLOAT_ARRAY: 'FLOAT[]',
+  DOUBLE_ARRAY: 'DOUBLE[]',
+  BOOL_ARRAY: 'BOOL[]',
+  LIST: 'LIST',
+  TIMESTAMP: 'TIMESTAMP',
+  DATE: 'DATE',
+  TIME: 'TIME',
+  INTERVAL: 'INTERVAL',
+  UUID: 'UUID',
+  BLOB: 'BLOB',
+  ANY: 'ANY',
+  // Aliases for backward compatibility
+  String: 'STRING',
+  Int32: 'INT32',
+  Int64: 'INT64',
+  Float: 'FLOAT',
+  Double: 'DOUBLE',
+  Bool: 'BOOL',
+  Timestamp: 'TIMESTAMP',
+  List: 'LIST',
+} as const;
+
+/**
  * Slugify a title to create an ID
  */
 export function idify(title: string): string {

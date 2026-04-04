@@ -36,11 +36,16 @@ This SDK showcases:
 - **Pattern Matching** - Declarative pattern matching with find() and v() variables
 - **Interface Comparison** - When to use Cypher vs JavaScript API vs Navigator
 
-### High-level SDK (New in 0.2.0)
+### High-level SDK (Example 15)
 - **CongraphSDK Wrapper** - Simple class for common note-taking and graph operations
 - **Filesystem Synchronization** - Automatic syncing of database nodes to Markdown files
 - **Knowledge Graph Management** - Automatic wiki-link (`[[Note Title]]`) parsing and linkage
 - **Plugin-ready Structure** - Clean separation of concerns for easy integration
+
+### v0.1.8 Features (Examples 16-21)
+- **OCC Transactions** - Optimistic Concurrency Control for high-concurrency scenarios
+- **Schema API** - JavaScript-native schema creation and management
+- **Graph Algorithms** - PageRank, Community Detection, Traversal, Analytics
 
 ## Quick Start
 
@@ -79,19 +84,33 @@ npm run dev
 Run a specific example:
 
 ```bash
-# High-level SDK Example (New!)
-npm start notes-sdk                   # High-level SDK wrapper demo
+# v0.1.8 Examples (New!)
+npm start occ-transactions              # OCC Transactions
+npm start schema-api                     # JavaScript Schema API
+npm start algorithms-centrality          # Centrality Algorithms
+npm start algorithms-community           # Community Detection
+npm start algorithms-traversal           # Traversal & Path Algorithms
+npm start algorithms-analytics            # Graph Analytics
+
+# High-level SDK Example
+npm start notes-sdk                      # High-level SDK wrapper demo
 
 # JavaScript API Examples (10-14)
-npm start javascript-api-basics       # JavaScript API fundamentals
-npm start navigator-traversal         # Fluent graph traversal
-npm start pattern-matching            # Pattern matching with find()
+npm start javascript-api-basics          # JavaScript API fundamentals
+npm start javascript-api-crud            # JavaScript API CRUD operations
+npm start navigator-traversal            # Fluent graph traversal
+npm start pattern-matching               # Pattern matching with find()
 
 # Cypher Query Language Examples (01-09)
-npm start basics              # Basic CRUD operations
-npm start social-network      # Social network graph demo
-npm start vector-search       # AI/Embedding similarity search
-npm start path-finding        # Path finding algorithms
+npm start basics                         # Basic CRUD operations
+npm start social-network                 # Social network graph demo
+npm start transactions                   # Transaction demo (ACID)
+npm start vector-search                  # AI/Embedding similarity search
+npm start configuration                  # Database configuration options
+npm start advanced-queries               # Complex Cypher patterns
+npm start path-finding                   # Path finding algorithms
+npm start temporal-types                 # Temporal data types
+npm start advanced-features              # Multi-label, regex, maps
 ```
 
 ## SDK Architecture
@@ -145,13 +164,33 @@ await sdk.init();
 | `findPath(from, to)` | Find the shortest link path between two notes. |
 | `getBacklinks(id)` | Find all notes that link TO this note. |
 
+### OCC Methods (v0.1.8+)
+
+| Method | Description |
+|--------|-------------|
+| `withRetry(fn, maxRetries)` | Execute operation with automatic OCC retry |
+| `getOccStatistics()` | Get OCC conflict metrics |
+| `resetOccStatistics()` | Reset OCC statistics counters |
+
+### Algorithm Helpers (v0.1.8+)
+
+| Method | Description |
+|--------|-------------|
+| `pageRank(options)` | Run PageRank algorithm |
+| `degreeCentrality(options)` | Calculate degree centrality |
+| `betweennessCentrality(options)` | Calculate betweenness centrality |
+| `detectCommunitiesLouvain(options)` | Run Louvain community detection |
+| `detectCommunitiesSLPA(options)` | Run SLPA for overlapping communities |
+| `shortestPath(options)` | Find shortest paths with Dijkstra |
+| `bfs(options)` | Breadth-first search traversal |
+| `triangleCount()` | Count triangles in the graph |
+| `connectedComponents(options)` | Find connected components |
+
 ## Migration Guide
 
 This SDK was built to centralize and standardize the database logic previously found in the `graph-mind` project.
 
 ### From logic in `graph-mind`
-
-If you are migrating from the old `Database.service.ts` pattern:
 
 **Old Pattern:**
 ```typescript
@@ -173,16 +212,6 @@ await sdk.init(); // Handles connection, schema, and directory setup
 const note = await sdk.createNote({ title: 'New Note', content: '...' });
 ```
 
-### Mapping of Features
-
-| Old `graph-mind` Location | `congraphdb-sdk` Equivalent |
-|---------------------------|----------------------------|
-| `Database.service.ts` | `src/lib/sdk.ts` |
-| `javascript.ts` (Backend) | `src/lib/javascript.ts` |
-| `cypher.ts` (Backend) | `src/lib/cypher.ts` |
-| `syncNote` (Internal) | `sdk.createNote()` (Automated) |
-| `backend/src/types/` | `import { ... } from 'congraphdb-sdk'` |
-
 ## Project Structure
 
 ```
@@ -194,7 +223,7 @@ congraphdb-sdk/
 │   │   ├── javascript.ts      # JavaScript API implementation
 │   │   ├── cypher.ts          # Cypher implementation & Schema
 │   │   └── sdk.ts             # Main High-level entry point
-│   ├── examples/              # Demonstration scripts (01-15)
+│   ├── examples/              # Demonstration scripts (01-21)
 │   ├── cli.ts                 # CLI Demo runner
 │   └── index.ts               # SDK Export entry point
 ├── data/                      # Sample database and notes
@@ -216,6 +245,4 @@ MIT
 - [CongraphDB Repository](https://github.com/congraph-ai/congraphdb)
 - [Official Documentation](https://congraph-ai.github.io/congraphdb-docs/)
 - [Cypher Query Language](https://opencypher.org/)
-Documentation](https://congraph-ai.github.io/congraphdb-docs/)
-- [Cypher Query Language](https://opencypher.org/)
-- [Project Documentation](docs/)
+

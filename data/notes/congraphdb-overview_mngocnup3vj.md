@@ -1,9 +1,9 @@
 ---
-id: congraphdb-overview_mnb2rq95vyi
+id: congraphdb-overview_mngocnup3vj
 title: "CongraphDB Overview"
 tags: [graph, database, embedded]
-createdAt: 2026-03-29T01:23:04.744Z
-updatedAt: 2026-03-29T01:23:04.744Z
+createdAt: 2026-04-01T23:26:04.224Z
+updatedAt: 2026-04-01T23:26:04.224Z
 version: 1
 ---
 

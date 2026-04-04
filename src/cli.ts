@@ -37,6 +37,12 @@ import { run as runNavigatorTraversal } from './examples/12-navigator-traversal.
 import { run as runPatternMatching } from './examples/13-pattern-matching.js';
 import { run as runWhenToUseWhat } from './examples/14-when-to-use-what.js';
 import { run as runNotesSdk } from './examples/15-notes-sdk.js';
+import { run as runOCC } from './examples/16-occ-transactions.js';
+import { run as runSchemaAPI } from './examples/17-schema-api.js';
+import { run as runAlgorithmsCentrality } from './examples/18-algorithms-centrality.js';
+import { run as runAlgorithmsCommunity } from './examples/19-algorithms-community.js';
+import { run as runAlgorithmsTraversal } from './examples/20-algorithms-traversal.js';
+import { run as runAlgorithmsAnalytics } from './examples/21-algorithms-analytics.js';
 
 // Example metadata
 const EXAMPLES = [
@@ -129,6 +135,42 @@ const EXAMPLES = [
     description: 'High-level Notes SDK wrapper',
     module: runNotesSdk,
     order: 15,
+  },
+  {
+    name: 'occ-transactions',
+    description: 'OCC Transactions (v0.1.8+)',
+    module: runOCC,
+    order: 16,
+  },
+  {
+    name: 'schema-api',
+    description: 'JavaScript Schema API (v0.1.8+)',
+    module: runSchemaAPI,
+    order: 17,
+  },
+  {
+    name: 'algorithms-centrality',
+    description: 'Centrality Algorithms',
+    module: runAlgorithmsCentrality,
+    order: 18,
+  },
+  {
+    name: 'algorithms-community',
+    description: 'Community Detection Algorithms',
+    module: runAlgorithmsCommunity,
+    order: 19,
+  },
+  {
+    name: 'algorithms-traversal',
+    description: 'Traversal & Path Algorithms',
+    module: runAlgorithmsTraversal,
+    order: 20,
+  },
+  {
+    name: 'algorithms-analytics',
+    description: 'Graph Analytics Algorithms',
+    module: runAlgorithmsAnalytics,
+    order: 21,
   },
 ];
 

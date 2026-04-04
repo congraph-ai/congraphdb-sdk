@@ -3,3 +3,4 @@ export * from './lib/types.js';
 export * from './lib/common.js';
 export * from './lib/javascript.js';
 export * from './lib/cypher.js';
+export { PropertyTypes } from './lib/common.js';

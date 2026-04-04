@@ -340,4 +340,217 @@ export class CongraphSDK {
     if (!this.connection) throw new Error('SDK not initialized');
     return this.connection;
   }
+
+  // ============================================================
+  // OCC Methods (v0.1.8+)
+  // ============================================================
+
+  /**
+   * Execute operation with automatic OCC retry on conflict
+   */
+  async withRetry<T>(fn: () => Promise<T>, maxRetries: number = 5): Promise<T> {
+    const conn = this.getConnection();
+
+    // Try to use native executeWithRetrySync if available
+    if (typeof (conn as any).executeWithRetrySync === 'function') {
+      return (conn as any).executeWithRetrySync(maxRetries, fn);
+    }
+
+    // Fallback to manual retry
+    return this.manualRetry(fn, maxRetries);
+  }
+
+  /**
+   * Manual retry implementation for OCC operations
+   */
+  private async manualRetry<T>(fn: () => Promise<T>, maxRetries: number): Promise<T> {
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        return await fn();
+      } catch (error) {
+        if (attempt === maxRetries - 1) throw error;
+        // Exponential backoff
+        await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 100));
+      }
+    }
+    throw new Error('Max retries exceeded');
+  }
+
+  /**
+   * Get OCC statistics for monitoring concurrency
+   */
+  async getOccStatistics() {
+    const conn = this.getConnection();
+    if (typeof (conn as any).getOccStatistics === 'function') {
+      return (conn as any).getOccStatistics();
+    }
+    return null;
+  }
+
+  /**
+   * Reset OCC statistics counters
+   */
+  async resetOccStatistics() {
+    const conn = this.getConnection();
+    if (typeof (conn as any).resetOccStatistics === 'function') {
+      return (conn as any).resetOccStatistics();
+    }
+  }
+
+  // ============================================================
+  // Algorithm Helper Methods (v0.1.8+)
+  // ============================================================
+
+  /**
+   * Run a graph algorithm and return parsed results
+   */
+  async runAlgorithm(name: string, config: Record<string, any> = {}): Promise<any[]> {
+    const conn = this.getConnection();
+
+    if (typeof (conn as any).runAlgorithmSync !== 'function') {
+      throw new Error('Algorithm support not available in this version');
+    }
+
+    const resultJson = (conn as any).runAlgorithmSync(name, JSON.stringify(config));
+    return JSON.parse(resultJson);
+  }
+
+  /**
+   * PageRank algorithm - finds important nodes
+   */
+  async pageRank(options: { dampingFactor?: number; maxIterations?: number } = {}): Promise<any[]> {
+    return this.runAlgorithm('pagerank', {
+      dampingFactor: 0.85,
+      maxIterations: 20,
+      ...options
+    });
+  }
+
+  /**
+   * Degree centrality - finds highly connected nodes
+   */
+  async degreeCentrality(options: { direction?: string; normalized?: boolean } = {}): Promise<any[]> {
+    return this.runAlgorithm('degree', {
+      direction: 'Both',
+      normalized: false,
+      ...options
+    });
+  }
+
+  /**
+   * Betweenness centrality - finds bridge nodes
+   */
+  async betweennessCentrality(options: { direction?: string } = {}): Promise<any[]> {
+    return this.runAlgorithm('betweenness', {
+      direction: 'Out',
+      ...options
+    });
+  }
+
+  /**
+   * Closeness centrality - finds central nodes
+   */
+  async closenessCentrality(options: { direction?: string } = {}): Promise<any[]> {
+    return this.runAlgorithm('closeness', {
+      direction: 'Out',
+      ...options
+    });
+  }
+
+  /**
+   * Community detection - Louvain algorithm
+   */
+  async detectCommunitiesLouvain(options: { resolution?: number; maxIterations?: number } = {}): Promise<any[]> {
+    return this.runAlgorithm('louvain', {
+      resolution: 1.0,
+      maxIterations: 20,
+      ...options
+    });
+  }
+
+  /**
+   * Community detection - Leiden algorithm
+   */
+  async detectCommunitiesLeiden(options: { resolution?: number; maxIterations?: number } = {}): Promise<any[]> {
+    return this.runAlgorithm('leiden', {
+      resolution: 1.0,
+      maxIterations: 20,
+      ...options
+    });
+  }
+
+  /**
+   * Community detection - SLPA (overlapping communities)
+   */
+  async detectCommunitiesSLPA(options: { threshold?: number; maxIterations?: number } = {}): Promise<any[]> {
+    return this.runAlgorithm('slpa', {
+      threshold: 0.1,
+      maxIterations: 20,
+      ...options
+    });
+  }
+
+  /**
+   * Shortest path - Dijkstra algorithm
+   */
+  async shortestPath(options: { weightProperty?: string; direction?: string } = {}): Promise<any[]> {
+    return this.runAlgorithm('dijkstra', {
+      weightProperty: 'cost',
+      direction: 'Out',
+      ...options
+    });
+  }
+
+  /**
+   * BFS traversal
+   */
+  async bfs(options: { maxDepth?: number; direction?: string } = {}): Promise<any[]> {
+    return this.runAlgorithm('bfs', {
+      maxDepth: 3,
+      direction: 'Out',
+      ...options
+    });
+  }
+
+  /**
+   * DFS traversal
+   */
+  async dfs(options: { maxDepth?: number; direction?: string } = {}): Promise<any[]> {
+    return this.runAlgorithm('dfs', {
+      maxDepth: 3,
+      direction: 'Out',
+      ...options
+    });
+  }
+
+  /**
+   * Triangle count - find triangles in the graph
+   */
+  async triangleCount(): Promise<any> {
+    const conn = this.getConnection();
+
+    if (typeof (conn as any).runAlgorithmSync !== 'function') {
+      throw new Error('Algorithm support not available in this version');
+    }
+
+    const resultJson = (conn as any).runAlgorithmSync('triangleCount', '{}');
+    return JSON.parse(resultJson);
+  }
+
+  /**
+   * Connected components - find disconnected subgraphs
+   */
+  async connectedComponents(options: { direction?: string } = {}): Promise<any[]> {
+    return this.runAlgorithm('connectedComponents', {
+      direction: 'Out',
+      ...options
+    });
+  }
+
+  /**
+   * Strongly connected components
+   */
+  async scc(): Promise<any[]> {
+    return this.runAlgorithm('scc', {});
+  }
 }

@@ -1,9 +1,9 @@
 ---
-id: database
+id: duckdb_mngocnv0
 title: "DuckDB"
 tags: [sql, analytical]
-createdAt: 2026-03-29T01:23:04.748Z
-updatedAt: 2026-03-29T01:23:04.755Z
+createdAt: 2026-04-01T23:26:04.236Z
+updatedAt: 2026-04-01T23:26:04.241Z
 version: 2
 ---
 
